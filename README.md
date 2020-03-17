@@ -8,22 +8,7 @@ Small python3 script that converts Metadata XML to DiscoFeed JSON format for Shi
 * `cd /opt ; sudo git clone https://github.com/malavolti/shib-eds-discofeed-generator.git`
 
 * Configure your Apache:
-
-  * `sudo vim /etc/apache2/sites-available/shib-eds-df-gen.conf`
-
-    ```apache
-    <IfModule mod_alias.c>
-      Alias /edugain2idem-eds.json /opt/shib-eds-discofeed-generator/output/edugain2idem-eds.json
-
-      <Directory /opt/shib-eds-discofeed-generator/output>
-         Require all denied
-         <Files *.json>
-            ForceType application/json
-            Require all granted
-         </Files>
-      </Directory>
-    </IfModule>
-    ```
+  * `sudo cp /opt/shib-eds-discofeed-generator/shib-eds-df-gen.conf /etc/apache2/sites-available`
 
 * Put the following command into your preferred CRON Jobs:
   * Choose ONE of the following command to consider only ONE metadata stream:
@@ -44,9 +29,9 @@ Small python3 script that converts Metadata XML to DiscoFeed JSON format for Shi
 
   Example Crontab:
   ```bash
-     20 * * * * /usr/bin/wget http://md.idem.garr.it/metadata/edugain2idem-metadata-sha256.xml -O /opt/shib-eds-discofeed-generator/input/edugain2idem-metadata-sha256.xml >> /opt/shib-eds-discofeed-generator/wget.log 2>&1
+  20 * * * * /usr/bin/wget http://md.idem.garr.it/metadata/edugain2idem-metadata-sha256.xml -O /opt/shib-eds-discofeed-generator/input/edugain2idem-metadata-sha256.xml >> /opt/shib-eds-discofeed-generator/wget.log 2>&1
 
-     21 * * * * /usr/bin/python3 /opt/shib-eds-discofeed-generator/extractDataFromMD.py -m /opt/shib-eds-discofeed-generator/input/edugain2idem-metadata-sha256.xml -o /opt/shib-eds-discofeed-generator/output/edugain2idem-eds.json > /opt/shib-eds-discofeed-generator/md-parsing.log 2>&1
+  21 * * * * /usr/bin/python3 /opt/shib-eds-discofeed-generator/extractDataFromMD.py -m /opt/shib-eds-discofeed-generator/input/edugain2idem-metadata-sha256.xml -o /opt/shib-eds-discofeed-generator/output/edugain2idem-eds.json > /opt/shib-eds-discofeed-generator/md-parsing.log 2>&1
   ```
 
 * Enable Shib EDS DiscoFeed Generator site:
