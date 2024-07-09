@@ -1,3 +1,6 @@
+> [!WARNING]  
+> Project archived and no longer maintained. DiscoFeed JSON files are distributed directly by [IDEM MDX](https://mdx.idem.garr.it/instructions.html#mdx-embedded-shibboleth-discovery-service-configuration).
+
 # Shibboleth EDS DiscoFeed generator
 Small python3 script that converts Metadata XML to DiscoFeed JSON format for Shibboleth Embedded Discovery Service
 
